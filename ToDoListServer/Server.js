@@ -22,7 +22,6 @@ let cors = require('cors');
 let bodyParser = require('body-parser')
 app.use(express.json());
 const publicPath = path.join(__dirname, '..', '/build');
-console.log(publicPath);
 app.use(express.static(publicPath));
 
 const corsOptions = {
@@ -63,7 +62,7 @@ app.use(
     console.log(req.user);
     console.log(req.user.fail);
     if(req.user.fail === 'failed'){
-        res.status(201).json({
+        res.status(401).json({
             authenticated: false,
             message: "failed to login",
             user: req.user,
