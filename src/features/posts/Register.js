@@ -48,6 +48,8 @@ export const Register=()=>{
           <br></br>
           <br></br>
           <label htmlFor="username">Username:</label>
+          <br></br>
+          <br></br>
           <input
             type="text"
             id="username"
@@ -61,6 +63,8 @@ export const Register=()=>{
           <br></br>
           <br></br>
           <label htmlFor="password">Password:</label>
+          <br></br>
+          <br></br>
           <input
             type="password"
             id="password"
