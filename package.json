@@ -29,7 +29,7 @@
     "txtgen": "^2.2.4"
   },
   "scripts": {
-    "start": " node ToDoList2/ToDoListServer/Server.js",
+    "start": "node Server.js",
     "heroku-postbuild": "npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
