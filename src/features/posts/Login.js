@@ -87,19 +87,23 @@ export const Login=()=>{
         <section>
         <h2>Login</h2>
         <form>
-          <label htmlFor="username">Username:</label>
           <br></br>
+          <br></br>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
             name="username"
             placeholder=""
             value={username}
+            size="30"
             onChange={OnUserNameChange}
             required
           />
           <br></br>
+          <br></br>
           <label htmlFor="password">Password:</label>
+          <br></br>
           <br></br>
           <input
             type="password"
@@ -107,10 +111,12 @@ export const Login=()=>{
             name="password"
             placeholder=""
             minLength="8"
+            size="30"
             value={password}
             onChange={OnPasswordChange}
             required
           />
+          <br></br>
           <br></br>
           <Link to='/register'>Register</Link>
           <h6></h6>

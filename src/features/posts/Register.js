@@ -45,16 +45,21 @@ export const Register=()=>{
         <section>
         <h2>Register</h2>
         <form>
+        <br></br>
+          <br></br>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
             name="username"
             placeholder=""
+            size="30"
             value={username}
             onChange={OnUserNameChange}
             required
           />
+          <br></br>
+          <br></br>
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -62,13 +67,16 @@ export const Register=()=>{
             name="password"
             placeholder=""
             minLength="8"
+            size="30"
             value={password}
             onChange={OnPasswordChange}
             required
           />
          <Link to='/'>Login</Link>
+         <br></br>
+          <br></br>
          <h6></h6>
-          <button type="button" onClick={SendRequest}>
+          <button className="button" type="button" onClick={SendRequest}>
             Register
           </button>
           {fail?(<h4 style={{color:"red"}}>check your password and username again</h4>):null}
