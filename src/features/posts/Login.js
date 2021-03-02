@@ -88,6 +88,7 @@ export const Login=()=>{
         <h2>Login</h2>
         <form>
           <label htmlFor="username">Username:</label>
+          <br></br>
           <input
             type="text"
             id="username"
@@ -97,7 +98,9 @@ export const Login=()=>{
             onChange={OnUserNameChange}
             required
           />
+          <br></br>
           <label htmlFor="password">Password:</label>
+          <br></br>
           <input
             type="password"
             id="password"
@@ -108,6 +111,7 @@ export const Login=()=>{
             onChange={OnPasswordChange}
             required
           />
+          <br></br>
           <Link to='/register'>Register</Link>
           <h6></h6>
           <button className="button" type="button" onClick={SendRequest}>
