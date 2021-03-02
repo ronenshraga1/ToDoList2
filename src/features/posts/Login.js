@@ -17,7 +17,7 @@ export const Login=()=>{
       dotenv.config();
       console.log(process.env.REACT_APP_KEY_ENCRYPT)
         try{
-            const response = await fetch('http://localhost:5000/login',{
+            const response = await fetch('192.168.1.102:5000/login',{
               method:'POST',
               headers: {
                 'Content-Type': 'application/json'
