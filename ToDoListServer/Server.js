@@ -199,6 +199,7 @@ app.post('/addsubmission', (req, res) => {
     client.query('INSERT INTO submissions(mission_id,item,submission_id) VALUES($1,$2,$3)',[req.body.id,req.body.submission,req.body.item],(error,results)=>{
       if(error){
           console.log(error);
+          console.log(req.body.item);
           res.send({response:'failed'});
       } else{
           res.send({response:'added'});
