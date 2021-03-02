@@ -45,7 +45,7 @@ export const Register=()=>{
         <section>
         <h2>Register</h2>
         <form>
-        <br></br>
+          <br></br>
           <br></br>
           <label htmlFor="username">Username:</label>
           <input
@@ -72,6 +72,8 @@ export const Register=()=>{
             onChange={OnPasswordChange}
             required
           />
+          <br></br>
+          <br></br>
          <Link to='/'>Login</Link>
          <br></br>
           <br></br>
