@@ -29,7 +29,8 @@ const SESSION = {
 let cors = require('cors');
 let bodyParser = require('body-parser')
 app.use(express.json());
-const publicPath = path.join(__dirname, '..', '/build');
+const publicPath = path.join(__dirname, '..', '/ToDoList2/build');
+console.log(publicPath);
 app.use(express.static(publicPath));
 
 const corsOptions = {
@@ -228,6 +229,6 @@ app.post('/deletesubmission',(req,res)=>{
     });
   });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`Example app listening at http://localhost:${5000}`)
 });
