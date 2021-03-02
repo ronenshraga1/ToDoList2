@@ -3,7 +3,6 @@ const path = require('path');
 const cookieParser = require("cookie-parser");
 const app = express();
 const passport = require('passport')
-const port = 4002;
 const session = require("express-session");
 let pg = require('pg');
 let client = new pg.Client("postgres://hgkhtnpi:rEF-uub-duO5tEMLw5o_p530mU7J6HKq@rogue.db.elephantsql.com:5432/hgkhtnpi");
@@ -64,7 +63,7 @@ app.use(passport.session());
     console.log(req.user);
     console.log(req.user.fail);
     if(req.user.fail === 'failed'){
-        res.status(401).json({
+        res.status(201).json({
             authenticated: false,
             message: "failed to login",
             user: req.user,
