@@ -23,6 +23,7 @@
     "faker": "^4.1.0",
     "miragejs": "^0.1.35",
     "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
