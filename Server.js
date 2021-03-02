@@ -29,9 +29,8 @@ const SESSION = {
 let cors = require('cors');
 let bodyParser = require('body-parser')
 app.use(express.json());
-const publicPath = path.join('C:/Users/User/ToDoList2/build');
+const publicPath = path.join(__dirname, '/build');
 console.log(publicPath);
-console.log(path.join(publicPath, 'index.html'));
 app.use(express.static(publicPath));
 
 const corsOptions = {
