@@ -1,5 +1,4 @@
 const express = require('express');
-const cookieSession = require("cookie-session");
 const path = require('path');
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -43,13 +42,6 @@ app.options('*', cors(corsOptions))
 app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(
-    cookieSession({
-      name: "session",
-      keys: [SESSION.COOKIE_KEY],
-      maxAge: 24 * 60 * 60 * 100
-    })
-  );
   app.post('/register',(req,res)=>{
     client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,req.body.password],(error,results)=>{
           if(error){
