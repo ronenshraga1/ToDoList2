@@ -13,7 +13,7 @@ export const EditPostForm = ({ match }) => {
   const getmission =async() =>{
     try{
       console.log(missionId);
-      const response = await fetch('http://localhost:4002/getspecificmission',{
+      const response = await fetch('http://localhost:5000/getspecificmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export const EditPostForm = ({ match }) => {
   const updateMission =async() =>{
     try{
       console.log(title);
-      const response = await fetch('http://localhost:4002/updatemission',{
+      const response = await fetch('http://localhost:5000/updatemission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'

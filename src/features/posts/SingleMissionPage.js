@@ -21,7 +21,7 @@ export const SinglePostPage = ({ match }) => {
   const getmission =async() =>{
     try{
       console.log(missionId);
-      const response = await fetch('http://localhost:4002/getspecificmission',{
+      const response = await fetch('http://localhost:5000/getspecificmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ export const SinglePostPage = ({ match }) => {
   }
   const getsubmissions =async() =>{
     try{
-      const response = await fetch('http://localhost:4002/getsubmissions',{
+      const response = await fetch('http://localhost:5000/getsubmissions',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ export const SinglePostPage = ({ match }) => {
   const sendSubMission =async(itemid) =>{
     try{
       console.log(missionId);
-      const response = await fetch('http://localhost:4002/addsubmission',{
+      const response = await fetch('http://localhost:5000/addsubmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ export const SinglePostPage = ({ match }) => {
     console.log(deleteid);
     console.log(submissions.submissionsarray);
     try{
-      const response = await fetch('http://localhost:4002/deletesubmission',{
+      const response = await fetch('http://localhost:5000/deletesubmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'

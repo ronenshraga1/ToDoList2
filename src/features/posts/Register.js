@@ -14,7 +14,7 @@ export const Register=()=>{
     const OnPasswordChange =(e) => SetPassword(e.target.value);
     const SendRequest = async() =>{
         try{
-            const response = await fetch('http://localhost:4002/register',{
+            const response = await fetch('http://localhost:5000/register',{
               method:'POST',
               headers: {
                 'Content-Type': 'application/json'
