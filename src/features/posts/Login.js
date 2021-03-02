@@ -110,7 +110,7 @@ export const Login=()=>{
           />
           <Link to='/register'>Register</Link>
           <h6></h6>
-          <button type="button" onClick={SendRequest}>
+          <button className="button" type="button" onClick={SendRequest}>
             Login
           </button>
           {show?(<h4 style={{color:"red"}}>check your password and username again</h4>):null}
