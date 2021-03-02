@@ -29,7 +29,8 @@
     "txtgen": "^2.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": " cd ToDoListServer && node server.js",
+    "heroku-postbuild": "npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

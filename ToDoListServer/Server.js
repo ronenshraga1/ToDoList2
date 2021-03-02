@@ -6,15 +6,24 @@ const app = express();
 const passport = require('passport')
 const port = 4002;
 const session = require("express-session");
-const Pool = require('pg').Pool;
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'TodoList',
-  password: 'postgres',
-  port: 5432,
-})
-require('./passportConfigure')(passport,pool);
+let pg = require('pg');
+let client = new pg.Client("postgres://hgkhtnpi:rEF-uub-duO5tEMLw5o_p530mU7J6HKq@rogue.db.elephantsql.com:5432/hgkhtnpi");
+
+client.connect(function(err) {
+  if(err) {
+    return console.error('could not connect to postgres', err);
+  }
+  client.query('SELECT NOW() AS "theTime"', function(err, result) {
+    if(err) {
+      return console.error('error running query', err);
+    }
+    console.log(result.rows[0].theTime);
+    // >> output: 2018-08-23T14:02:57.117Z
+  });
+
+});
+
+require('./passportConfigure')(passport,client);
 const SESSION = {
     COOKIE_KEY: "thisappisawesome"
   };
@@ -42,7 +51,7 @@ app.use(
     })
   );
   app.post('/register',(req,res)=>{
-      pool.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,req.body.password],(error,results)=>{
+    client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,req.body.password],(error,results)=>{
           if(error){
               console.log(error);
               res.json({msg:'username already exists'})
@@ -107,12 +116,12 @@ app.use(
   });
 
 app.post('/addmission', (req, res) => {
-  pool.query('INSERT INTO missions(id,date,title,content,username) VALUES($1,$2,$3,$4,$5)',[req.body.id,req.body.date,req.body.title,req.body.content,req.body.user],(error,results)=>{
+    client.query('INSERT INTO missions(id,date,title,content,username) VALUES($1,$2,$3,$4,$5)',[req.body.id,req.body.date,req.body.title,req.body.content,req.body.user],(error,results)=>{
       if(error){
           console.log(error);
       }
   });
-  pool.query('SELECT * FROM missions',[],(error,results)=>{
+  client.query('SELECT * FROM missions',[],(error,results)=>{
     if(error){
         res.send({js:'failed to send'});
     } else{
@@ -124,7 +133,7 @@ app.post('/addmission', (req, res) => {
 app.post('/getmissions', (req, res) => {
     console.log(req.body.role);
   if(req.body.role ==='admin' && req.body.auth){
-    pool.query('SELECT * FROM missions',[],(error,results)=>{
+    client.query('SELECT * FROM missions',[],(error,results)=>{
         if(error){
             console.log(error);
             res.send({js:'failed to send'});
@@ -133,7 +142,7 @@ app.post('/getmissions', (req, res) => {
         }
       });
   }else if(req.body.auth){
-  pool.query('SELECT * FROM missions WHERE username=$1',[req.body.username],(error,results)=>{
+    client.query('SELECT * FROM missions WHERE username=$1',[req.body.username],(error,results)=>{
     if(error){
         console.log(error);
         res.send({js:'failed to send'});
@@ -147,12 +156,12 @@ app.post('/getmissions', (req, res) => {
 });
 
   app.post('/deletemission',(req,res)=>{
-      pool.query('DELETE FROM submissions WHERE mission_id=$1',[req.body.id],(error,results)=>{
+    client.query('DELETE FROM submissions WHERE mission_id=$1',[req.body.id],(error,results)=>{
           if(error){
               res.send({msg:'fail'});
           }
       })
-    pool.query('DELETE FROM missions WHERE id=$1',[req.body.id],(error,results)=>{
+    client.query('DELETE FROM missions WHERE id=$1',[req.body.id],(error,results)=>{
         if(error){
             res.send({msg:'didnt found'});
         }else{
@@ -164,7 +173,7 @@ app.post('/getmissions', (req, res) => {
       console.log(req.body.auth);
       if(req.body.auth === 'true'){
           console.log(req.body.auth);
-        pool.query('SELECT * FROM missions WHERE id=$1',[req.body.id],(error,results)=>{
+          client.query('SELECT * FROM missions WHERE id=$1',[req.body.id],(error,results)=>{
             if(error){
                 res.send({msg:'didnt found'});
             } else{
@@ -178,7 +187,7 @@ app.post('/getmissions', (req, res) => {
   
 
 app.post('/updatemission',(req,res) =>{
-    pool.query('UPDATE missions SET title =$1,content =$2 WHERE id=$3',[req.body.title,req.body.content,req.body.id],(error,results)=>{
+    client.query('UPDATE missions SET title =$1,content =$2 WHERE id=$3',[req.body.title,req.body.content,req.body.id],(error,results)=>{
         if(error){
             res.send({response:'failed'});
         } else{
@@ -187,7 +196,7 @@ app.post('/updatemission',(req,res) =>{
     });
 });
 app.post('/addsubmission', (req, res) => {
-  pool.query('INSERT INTO submissions(mission_id,item,submission_id) VALUES($1,$2,$3)',[req.body.id,req.body.submission,req.body.item],(error,results)=>{
+    client.query('INSERT INTO submissions(mission_id,item,submission_id) VALUES($1,$2,$3)',[req.body.id,req.body.submission,req.body.item],(error,results)=>{
       if(error){
           console.log(error);
           res.send({response:'failed'});
@@ -197,7 +206,7 @@ app.post('/addsubmission', (req, res) => {
   });
 });
 app.post('/getsubmissions',(req,res)=>{
-    pool.query('SELECT * FROM submissions WHERE mission_id=$1',[req.body.id],(error,results)=>{
+    client.query('SELECT * FROM submissions WHERE mission_id=$1',[req.body.id],(error,results)=>{
         if(error){
             console.log(error);
             res.send({response:'failed to send'});
@@ -215,7 +224,7 @@ app.post('/getsubmissions',(req,res)=>{
       });
 });
 app.post('/deletesubmission',(req,res)=>{
-    pool.query('DELETE FROM submissions WHERE submission_id=$1',[req.body.id],(error,results)=>{
+    client.query('DELETE FROM submissions WHERE submission_id=$1',[req.body.id],(error,results)=>{
         if(error){
             console.log(error);
             res.send({msg:'didnt found'});
