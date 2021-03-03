@@ -56,14 +56,14 @@ export const AddMissionForm = () => {
   useEffect(()=>{
     gethour();
   },[])
-  const onSaveMissionClicked = () => {
-    if (title && content) {
+  const onSaveMissionClicked = (e) => {
+    if (title && content || e.which === 13 && title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
       setContent('');
       setUserId('');
-    }else{
+    } else if(e.which === 13){
       setOpen(true);
     }
   }
