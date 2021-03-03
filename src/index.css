@@ -185,6 +185,9 @@ button.reaction-button {
   border-radius: 7px; 
 }
 
+.submissions{
+  display: flex;
+}
 
 /* https://projects.lukehaas.me/css-loaders/ , Loader #3 */
 

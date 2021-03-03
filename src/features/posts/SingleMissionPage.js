@@ -208,7 +208,7 @@ export const SinglePostPage = ({ match }) => {
           onChange={onSubMissionChanged}
           onKeyPress={addsubmission}
         />
-        <input id="addsubbtn" type="text" onClick={addsubmission}/>
+         <button id="addsubbtn "type="button" onClick={addsubmission}>Add mission</button>
         {renderSubMissions}
       </article>
     </section>
