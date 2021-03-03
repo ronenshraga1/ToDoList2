@@ -42,7 +42,7 @@ app.options('*', cors(corsOptions))
 app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-  app.post('/register',(req,res)=>{
+  app.post('/tryregister',(req,res)=>{
     client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,req.body.password],(error,results)=>{
           if(error){
               console.log(error);
@@ -57,7 +57,7 @@ app.use(passport.session());
  });
  
 
-  app.post('/login',
+  app.post('/trylogin',
   passport.authenticate('local'),
   function(req, res) {
     console.log(req.user);

@@ -17,7 +17,7 @@ export const Login=()=>{
       dotenv.config();
       console.log(process.env.REACT_APP_KEY_ENCRYPT)
         try{
-            const response = await fetch('http://localhost:5000/login',{
+            const response = await fetch('https://frozen-ridge-44289.herokuapp.com/trylogin',{
               method:'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ export const Login=()=>{
         console.log(username);
         console.log(localStorage.getItem('password'));
         try{
-            const response = await fetch('http://localhost:5000/login',{
+            const response = await fetch('https://frozen-ridge-44289.herokuapp.com/trylogin',{
               method:'POST',
               headers: {
                 'Content-Type': 'application/json'

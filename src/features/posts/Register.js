@@ -14,7 +14,7 @@ export const Register=()=>{
     const OnPasswordChange =(e) => SetPassword(e.target.value);
     const SendRequest = async() =>{
         try{
-            const response = await fetch('http://localhost:5000/register',{
+            const response = await fetch('https://frozen-ridge-44289.herokuapp.com/tryregister',{
               method:'POST',
               headers: {
                 'Content-Type': 'application/json'
