@@ -57,13 +57,24 @@ export const AddMissionForm = () => {
     gethour();
   },[])
   const onSaveMissionClicked = (e) => {
-    if (title && content || e.which === 13 && title && content) {
+    if (e.which === 13 && title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
       setContent('');
       setUserId('');
-    } else if(e.which === 13){
+    } else {
+      setOpen(true);
+    }
+  }
+  const onSaveMissionPress = (e) => {
+    if (e.key === 'Enter' && title && content) {
+      dispatch(missionAdded(title, content, localStorage.getItem('username')));
+      console.log('hi');
+      setTitle('');
+      setContent('');
+      setUserId('');
+    } else {
       setOpen(true);
     }
   }
@@ -90,7 +101,7 @@ export const AddMissionForm = () => {
           name="postContent"
           value={content}
           onChange={onContentChanged}
-          onKeyPress={onSaveMissionClicked}
+          onKeyPress={onSaveMissionPress}
         />
         <button type="button" onClick={onSaveMissionClicked} >
           Save Mission
