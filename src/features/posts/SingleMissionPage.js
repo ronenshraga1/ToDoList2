@@ -138,6 +138,7 @@ export const SinglePostPage = ({ match }) => {
   
   const onSubMissionChanged = (e) => SetSubMission(e.target.value);
   const addsubmission = async(event) =>{
+    console.log('c');
     console.log(event.target.id);
     if(event.key === 'Enter' || event.target.id === "addsubbtn"){
       console.log('check');

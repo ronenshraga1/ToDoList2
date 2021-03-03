@@ -109,7 +109,7 @@ export const Login=()=>{
             value={password}
             onChange={OnPasswordChange}
             required
-            onClick={SendRequest}
+            onKeyPress={SendRequest}
           />
           <Link to='/register'>Register</Link>
           <h6></h6>
