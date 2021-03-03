@@ -8,7 +8,7 @@ let COUNT =0;
 async function sendmission(payload){
   console.log(payload.date);
   try{
-    const response = await fetch('http://localhost:5000/addmission',{
+    const response = await fetch('https://frozen-ridge-44289.herokuapp.com/addmission',{
       method:'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -42,7 +42,7 @@ export const MissionsList = () => {
   const getmission = async() =>{
     console.log(localStorage.getItem('role'));
     try{
-      const response = await fetch('http://localhost:5000/getmissions',{
+      const response = await fetch('https://frozen-ridge-44289.herokuapp.com/getmissions',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ export const MissionsList = () => {
   }
   const deletemission = async (event) =>{
     try{
-      const response = await fetch('http://localhost:5000/deletemission',{
+      const response = await fetch('https://frozen-ridge-44289.herokuapp.com/deletemission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'

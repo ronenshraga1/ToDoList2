@@ -13,7 +13,7 @@ export const EditPostForm = ({ match }) => {
   const getmission =async() =>{
     try{
       console.log(missionId);
-      const response = await fetch('http://localhost:5000/getspecificmission',{
+      const response = await fetch('https://frozen-ridge-44289.herokuapp.com/getspecificmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export const EditPostForm = ({ match }) => {
   const updateMission =async() =>{
     try{
       console.log(title);
-      const response = await fetch('http://localhost:5000/updatemission',{
+      const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatemission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
