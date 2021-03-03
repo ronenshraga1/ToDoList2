@@ -60,7 +60,7 @@ app.use(passport.session());
   app.post('/trylogin',
   passport.authenticate('local'),
   function(req, res) {
-    console.log(req.user);
+    console.log('ok');
     console.log(req.user.fail);
     if(req.user.fail === 'failed'){
         res.status(201).json({
