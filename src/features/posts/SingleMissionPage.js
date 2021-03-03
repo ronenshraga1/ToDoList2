@@ -138,7 +138,7 @@ export const SinglePostPage = ({ match }) => {
   
   const onSubMissionChanged = (e) => SetSubMission(e.target.value);
   const addsubmission = async(event) =>{
-    console.log(submission);
+    console.log(event.target.id);
     if(event.key === 'Enter' || event.target.id === "addsubbtn"){
       console.log('check');
       await sendSubMission(nanoid());
@@ -209,7 +209,7 @@ export const SinglePostPage = ({ match }) => {
           onChange={onSubMissionChanged}
           onKeyPress={addsubmission}
         />
-        <button id="addsubbtn "type="button" onClick={addsubmission}>Add mission</button>
+        <button id="addsubbtn"type="button" onClick={addsubmission}>Add mission</button>
         </div>
         {renderSubMissions}
       </article>

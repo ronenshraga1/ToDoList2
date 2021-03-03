@@ -13,9 +13,9 @@ export const Login=()=>{
     const history = useHistory();
     const OnUserNameChange =(e) => SetUserName(e.target.value);
     const OnPasswordChange =(e) => SetPassword(e.target.value);
-    const SendRequest = async() =>{
+    const SendRequest = async(e) =>{
       dotenv.config();
-      console.log(process.env.REACT_APP_KEY_ENCRYPT)
+      if(e.key === 'Enter' || e.target.id ==="send")
         try{
             const response = await fetch('https://frozen-ridge-44289.herokuapp.com/trylogin',{
               method:'POST',
@@ -109,10 +109,11 @@ export const Login=()=>{
             value={password}
             onChange={OnPasswordChange}
             required
+            onClick={SendRequest}
           />
           <Link to='/register'>Register</Link>
           <h6></h6>
-          <button className="button" type="button" onClick={SendRequest}>
+          <button id="send" className="button" type="button" onClick={SendRequest}>
             Login
           </button>
           {show?(<h4 style={{color:"red"}}>check your password and username again</h4>):null}
