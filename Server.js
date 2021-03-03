@@ -75,7 +75,7 @@ app.use(passport.session());
             authenticated: true,
             message: "user successfully authenticated",
             user: req.username,
-            role:req.params.role,
+            role:req.role,
             cookies: req.cookies
           });
     }
