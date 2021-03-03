@@ -67,7 +67,7 @@ app.use(passport.session());
             authenticated: false,
             message: "failed to login",
             user: req.user,
-            role:req.role,
+            role:req.user.role,
             cookies: req.cookies
           });
     }else{
@@ -75,7 +75,7 @@ app.use(passport.session());
             authenticated: true,
             message: "user successfully authenticated",
             user: req.username,
-            role:req.role,
+            role:req.user.role,
             cookies: req.cookies
           });
     }
