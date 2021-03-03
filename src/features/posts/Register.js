@@ -46,7 +46,6 @@ export const Register=()=>{
         <h2>Register</h2>
         <form>
           <br></br>
-          <br></br>
           <label htmlFor="username">Username:</label>
           <br></br>
           <br></br>
