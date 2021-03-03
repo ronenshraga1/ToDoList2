@@ -7,6 +7,7 @@ import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 
 import { TimeAgo } from './TimeAgo'
+import e from 'express'
 let COUNT =0;
 export const SinglePostPage = ({ match }) => {
   const { missionId } = match.params
@@ -139,7 +140,7 @@ export const SinglePostPage = ({ match }) => {
   const onSubMissionChanged = (e) => SetSubMission(e.target.value);
   const addsubmission = async(event) =>{
     console.log(submission);
-    if(event.which === 13){
+    if(event.which === 13 || e.target.id==='addsubbtn'){
       console.log('check');
       await sendSubMission(nanoid());
       COUNT++;
@@ -208,6 +209,7 @@ export const SinglePostPage = ({ match }) => {
           onChange={onSubMissionChanged}
           onKeyPress={addsubmission}
         />
+        <button id ="addsubbtn"type="button" onClick={addsubmission}>Search</button>
         {renderSubMissions}
       </article>
     </section>
