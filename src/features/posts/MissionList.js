@@ -195,7 +195,7 @@ useEffect(()=>{
 },[update]);
   const onUpdateSearch = (e) => SetSearch(e.target.value);
   const searchMissions =(e) =>{
-    if(e.which === 13){
+    if(e.which === 13 || e.target.id==='searchbtn'){
       console.log('press');
       const filterMissions = orderedMissions.filter(mission => mission.title.indexOf(search) !==-1 || mission.content.indexOf(search) !==-1|| mission.username.indexOf(search) !==-1);
       console.log(filterMissions);
@@ -223,6 +223,7 @@ const Reset =() =>{
           onChange={onUpdateSearch}
           onKeyPress={searchMissions}
         />
+        <button id ="searchbtn"type="button" onClick={searchMissions}>Search</button>
         <button type="button" onClick={Reset}>Reset</button>
         </div>
       {renderedMissions}
