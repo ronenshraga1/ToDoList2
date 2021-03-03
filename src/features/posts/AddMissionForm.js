@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 import { missionAdded } from './MissionSlice';
 function gethour(){
@@ -15,9 +19,23 @@ function gethour(){
     alert('ערב טוב');
   }
 }
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 
 export const AddMissionForm = () => {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [userId, setUserId] = useState('');
@@ -28,6 +46,13 @@ export const AddMissionForm = () => {
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onAuthorChanged = (e) => setUserId(e.target.value);
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   useEffect(()=>{
     gethour();
   },[])
@@ -38,6 +63,8 @@ export const AddMissionForm = () => {
       setTitle('');
       setContent('');
       setUserId('');
+    }else{
+      setOpen(true);
     }
   }
 
@@ -63,11 +90,19 @@ export const AddMissionForm = () => {
           name="postContent"
           value={content}
           onChange={onContentChanged}
+          onKeyPress={onSaveMissionClicked}
         />
-        <button type="button" onClick={onSaveMissionClicked} disabled={!canSave}>
+        <button type="button" onClick={onSaveMissionClicked} >
           Save Mission
         </button>
       </form>
+      <div className={classes.root}>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          Check both fields are not empty!
+        </Alert>
+      </Snackbar>
+    </div>
     </section>
   )
 }
