@@ -116,7 +116,9 @@ export const MissionsList = () => {
     })
   },[updatedelete]);
   // Sort posts in reverse chronological order by datetime string
-  const orderedMissions = missions1.missarr
+  const orderedMissions =[];
+  try{
+  orderedMissions = missions1.missarr
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date))
   if(FILTERON === false){
@@ -165,6 +167,9 @@ export const MissionsList = () => {
     );
   })
 }
+  }catch(error){
+    console.log(error);
+  }
 useEffect(()=>{
   const filterMissions = orderedMissions.filter(mission => mission.title.indexOf(search) !==-1 || mission.content.indexOf(search) !==-1 || mission.username.indexOf(search) !==-1);
   renderedMissions = filterMissions.map((mission) =>{
