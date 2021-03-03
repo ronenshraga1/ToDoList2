@@ -11,12 +11,12 @@ function gethour(){
   const hour = date.getHours();
   console.log(hour);
   if(hour<13){
-    alert("בוקר טוב");
+    return "Good Morning";
     console.log('dadada')
   } else if(hour>=13 && hour<=17){
-    alert('צהריים טובים');
+    return 'Good afternoon';
   }else{
-    alert('ערב טוב');
+    return'Good evening';
   }
 }
 function Alert(props) {
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 export const AddMissionForm = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [hello, setHello] = React.useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [userId, setUserId] = useState('');
@@ -54,7 +55,7 @@ export const AddMissionForm = () => {
     setOpen(false);
   };
   useEffect(()=>{
-    gethour();
+    setHello(true);
   },[])
   const onSaveMissionClicked = (e) => {
     if (title && content) {
@@ -119,6 +120,11 @@ export const AddMissionForm = () => {
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           Check both fields are not empty!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={hello}>
+      <Alert onClose={handleClose} severity="success">
+          {gethour()+localStorage.getItem('username')}
         </Alert>
       </Snackbar>
     </div>
