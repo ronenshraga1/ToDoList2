@@ -82,6 +82,11 @@ export const AddMissionForm = () => {
   }
 
   const canSave = Boolean(title) && Boolean(content);
+  const stop =(e) =>{
+    if(e.key === 'Enter'){
+    e.preventDefault();
+    }
+  }
   
   return (
     <section>
@@ -95,6 +100,7 @@ export const AddMissionForm = () => {
           placeholder=""
           value={title}
           onChange={onTitleChanged}
+          onKeyPress={stop}
         />
         
         <label htmlFor="postContent">Content:</label>
