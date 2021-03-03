@@ -57,7 +57,7 @@ export const AddMissionForm = () => {
     gethour();
   },[])
   const onSaveMissionClicked = (e) => {
-    if (e.which === 13 && title && content) {
+    if (title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
@@ -68,7 +68,6 @@ export const AddMissionForm = () => {
     }
   }
   const onSaveMissionPress = (e) => {
-    console.log('c');
     if (e.key === 'Enter'){
     if (title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
