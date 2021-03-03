@@ -69,7 +69,8 @@ export const AddMissionForm = () => {
   }
   const onSaveMissionPress = (e) => {
     console.log('c');
-    if (e.key === 'Enter' && title && content) {
+    if (e.key === 'Enter'){
+    if (title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
@@ -78,6 +79,7 @@ export const AddMissionForm = () => {
     } else {
       setOpen(true);
     }
+  }
   }
 
   const canSave = Boolean(title) && Boolean(content);
