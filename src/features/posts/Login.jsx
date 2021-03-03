@@ -87,10 +87,7 @@ export const Login=()=>{
         <section>
         <h2>Login</h2>
         <form>
-          <br></br>
           <label htmlFor="username">Username:</label>
-          <br></br>
-          <br></br>
           <input
             type="text"
             id="username"
@@ -101,11 +98,7 @@ export const Login=()=>{
             onChange={OnUserNameChange}
             required
           />
-          <br></br>
-          <br></br>
           <label htmlFor="password">Password:</label>
-          <br></br>
-          <br></br>
           <input
             type="password"
             id="password"
@@ -117,8 +110,6 @@ export const Login=()=>{
             onChange={OnPasswordChange}
             required
           />
-          <br></br>
-          <br></br>
           <Link to='/register'>Register</Link>
           <h6></h6>
           <button className="button" type="button" onClick={SendRequest}>
