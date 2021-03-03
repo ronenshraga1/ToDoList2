@@ -68,6 +68,7 @@ export const AddMissionForm = () => {
     }
   }
   const onSaveMissionPress = (e) => {
+    console.log('c');
     if (e.key === 'Enter' && title && content) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
