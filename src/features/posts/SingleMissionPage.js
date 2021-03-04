@@ -220,6 +220,8 @@ export const SinglePostPage = ({ match }) => {
     }catch(error){
       console.log(error);
     }
+    COUNT++;
+    UpdateDelete(COUNT);
   }
    renderSubMissions = submissions.submissionsarray.map((submis,i=0) =>{
      console.log(submissions.checks[i]+"");
