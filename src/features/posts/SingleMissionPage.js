@@ -200,7 +200,7 @@ export const SinglePostPage = ({ match }) => {
       <h4 id={i}>{submis}</h4>
       <br></br>
       <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-      <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
+      <input id={i} type="checkbox" checked={submissions.checks[i]} onClick={updateChecked}/>
       {i++}
       </article>
     ); 
