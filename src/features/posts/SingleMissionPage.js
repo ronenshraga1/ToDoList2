@@ -4,21 +4,7 @@ import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addSubMission,deleteSubMission } from './MissionSlice'
 import { createSlice, nanoid } from '@reduxjs/toolkit'
-import Checkbox from '@material-ui/core/Checkbox';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
-
-
 import { TimeAgo } from './TimeAgo';
-const GreenCheckbox = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600],
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
 
 let COUNT =0;
 export const SinglePostPage = ({ match }) => {
@@ -142,12 +128,6 @@ export const SinglePostPage = ({ match }) => {
         <article className="sublist">
         <h4 id={i}>{submis}</h4>
         <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-        <Checkbox
-        color="primary"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-        checked={submissions.checks[i]}
-        onChange={updateChecked}
-        />
         {i++}
         </article>
       ); 
@@ -172,12 +152,6 @@ export const SinglePostPage = ({ match }) => {
           <h4 id={i}>{submis}</h4>
           <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
           <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
-          <Checkbox
-        color="primary"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-        checked={submissions.checks[i]}
-        onChange={updateChecked}
-      />
           {i++}
           </article>
         ); 
@@ -231,12 +205,6 @@ export const SinglePostPage = ({ match }) => {
       <br></br>
       <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
       <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
-      <Checkbox
-        color="primary"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-        checked={submissions.checks[i]}
-        onChange={updateChecked}
-        />
       {i++}
       </article>
     ); 
