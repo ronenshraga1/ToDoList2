@@ -53,12 +53,13 @@ export const AddMissionForm = () => {
     }
 
     setOpen(false);
+    setHello(false);
   };
   useEffect(()=>{
     setHello(true);
   },[])
   const onSaveMissionClicked = (e) => {
-    if (title && content) {
+    if (title !== '' && content !=='') {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
@@ -70,7 +71,7 @@ export const AddMissionForm = () => {
   }
   const onSaveMissionPress = (e) => {
     if (e.key === 'Enter'){
-    if (title && content) {
+    if (title !== '' && content !=='') {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
