@@ -167,14 +167,14 @@ export const SinglePostPage = ({ match }) => {
     UpdateDelete(COUNT);
   }
   const updateChecked = async(event,i)=>{
-    console.log(event.target.checked);
+    console.log(submissions.checks[i]);
     try{
       const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
       },
-        body:JSON.stringify({checked:event.target.checked,id:submissions.ids[i]})
+        body:JSON.stringify({checked:submissions.checks[i],id:submissions.ids[i]})
       });
       console.log(response.ok);
       if(response.ok){
