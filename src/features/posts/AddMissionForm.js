@@ -71,7 +71,7 @@ export const AddMissionForm = () => {
   }
   const onSaveMissionPress = (e) => {
     if (e.key === 'Enter'){
-    if (title !== '' && content !=='') {
+    if (title !== '' && Boolean(content)) {
       dispatch(missionAdded(title, content, localStorage.getItem('username')));
       console.log('hi');
       setTitle('');
