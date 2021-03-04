@@ -142,6 +142,12 @@ export const SinglePostPage = ({ match }) => {
         <article className="sublist">
         <h4 id={i}>{submis}</h4>
         <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
+        <Checkbox
+        color="primary"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+        checked={submissions.checks[i]}
+        onChange={updateChecked}
+        />
         {i++}
         </article>
       ); 
