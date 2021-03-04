@@ -167,7 +167,11 @@ export const SinglePostPage = ({ match }) => {
     UpdateDelete(COUNT);
   }
   const updateChecked = async(e)=>{
-    console.log(submissions.checks[e.target.id]+"");
+    if(e.target.checked === true){
+      e.target.checked = false;
+    } else{
+      e.target.checked = true;
+    }
     try{
       const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
         method:'POST',
