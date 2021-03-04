@@ -16,12 +16,11 @@ const passport = require('passport')
     db.query('SELECT username, password,role FROM users WHERE username=$1',[username],(error,result)=>{
     if(result.rows.length >0){
         const first = result.rows[0];
-        const passwordbytes =CryptoJS.AES.decrypt(first.password, 'agsfarfsbfggfsajrsrj1');
-        const decryptedpassword = passwordbytes.toString(CryptoJS.enc.Utf8);
-        if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === decryptedpassword && first.role==='admin'){
-            done(null,{username:first.username,pass:decryptedpassword,role:'admin'});
-        } else if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === decryptedpassword){
-            done(null,{username:first.username,pass:decryptedpassword,role:'user'});
+        const passwordbytes =CryptoJS.AES.encrypt(first.password, 'agsfarfsbfggfsajrsrj1');
+        if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === first.password && first.role==='admin'){
+            done(null,{username:first.username,pass:first.password,role:'admin'});
+        } else if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === first.password){
+            done(null,{username:first.username,pass:first.password,role:'user'});
         }else{
             done(null,{fail:'failed'});
         }
