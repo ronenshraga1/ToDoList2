@@ -169,8 +169,10 @@ export const SinglePostPage = ({ match }) => {
   const updateChecked = async(e)=>{
     if(e.target.checked === true){
       e.target.checked = false;
+      console.log(e.target.checked);
     } else{
       e.target.checked = true;
+      console.log(e.target.checked);
     }
     try{
       const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
