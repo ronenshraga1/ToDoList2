@@ -122,9 +122,9 @@ export const AddMissionForm = () => {
           Check both fields are not empty!
         </Alert>
       </Snackbar>
-      <Snackbar open={hello}>
+      <Snackbar open={hello} autoHideDuration={6000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success">
-          {gethour()+localStorage.getItem('username')}
+          {gethour()+' '+localStorage.getItem('username')}
         </Alert>
       </Snackbar>
     </div>
