@@ -187,12 +187,14 @@ export const SinglePostPage = ({ match }) => {
   }
   const updateChecked = async(e)=>{
     let change = submissions.checks.slice();
+    let change1 = submissions.submissionsarray.slice();
+    let change2 = submissions.ids.slice();
     if(e.target.checked === true){
       change[e.target.id] = false;
-      SetSubMissions({checks:change});
+      SetSubMissions({submissionsarray:change1,ids:change2,checks:change});
     } else{
       change[e.target.id] = true;
-      SetSubMissions({checks:change});
+      SetSubMissions({submissionsarray:change1,ids:change2,checks:change});
       console.log(e.target.checked);
     }
     try{
