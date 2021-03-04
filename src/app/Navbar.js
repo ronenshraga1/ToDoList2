@@ -9,18 +9,32 @@ export const Navbar = () => {
     localStorage.setItem('authenticated','false');
     localStorage.setItem('role','');
   }
+  if(localStorage.getItem('authenticated') === 'true'){
+    return (
+      <nav>
+        <section>
+          <h1>To Do List</h1>
+          <div className="navContent">
+            <div className="navLinks">
+              <Link to="/missions">Missions</Link>
+              <Link to="/login" onClick={logout}>Logout</Link>
+            </div>
+          </div>
+        </section>
+      </nav>
+    )
+  }else{
   return (
     <nav>
       <section>
         <h1>To Do List</h1>
-
         <div className="navContent">
           <div className="navLinks">
             <Link to="/missions">Missions</Link>
-            <Link to="/login" onClick={logout}>Logout</Link>
           </div>
         </div>
       </section>
     </nav>
   )
+  }
 }

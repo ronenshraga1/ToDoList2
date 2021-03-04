@@ -64,7 +64,7 @@ export const Login=()=>{
               const jsonResponse = await response.json();
               console.log(jsonResponse.authenticated);
               if(jsonResponse.authenticated){
-                  localStorage.setItem('authenticated',true);
+                  localStorage.setItem('authenticated','true');
                   localStorage.setItem('role',jsonResponse.role);
                   history.push('/missions');
               } else{
