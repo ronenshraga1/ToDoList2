@@ -190,7 +190,9 @@ button.reaction-button {
 }
 .logout{
   display: flex;
+  justify-content: space-between;
 }
+
 .btn{
   display: inline-block;
   background: #1976d2;
