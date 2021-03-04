@@ -59,7 +59,7 @@ export const SinglePostPage = ({ match }) => {
       console.log(response.ok);
       if(response.ok){
         const jsonResponse = await response.json();
-        console.log(jsonResponse.response);
+        console.log(jsonResponse.checks);
         SetSubMissions({submissionsarray:jsonResponse.response,ids:jsonResponse.id,checks:jsonResponse.checks});
       }else{
       throw new Error('request failed');

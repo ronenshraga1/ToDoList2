@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
+  useEffect(()=>{
+    if(localStorage.getItem('authenticated') === 'true'){
+      return (
+        <nav>
+          <section>
+            <h1>To Do List</h1>
+            <div className="navContent">
+              <div className="navLinks">
+                <Link to="/missions">Missions</Link>
+                <Link to="/login" onClick={logout}>Logout</Link>
+              </div>
+            </div>
+          </section>
+        </nav>
+      )
+    }else{
+    return (
+      <nav>
+        <section>
+          <h1>To Do List</h1>
+          <div className="navContent">
+            <div className="navLinks">
+              <Link to="/missions">Missions</Link>
+            </div>
+          </div>
+        </section>
+      </nav>
+    )
+    }
+  },[localStorage.getItem('authenticated')])
   const logout=()=>{
     localStorage.setItem('username','');
     localStorage.setItem('password','');
