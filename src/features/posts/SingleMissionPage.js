@@ -4,9 +4,22 @@ import { useSelector,useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addSubMission,deleteSubMission } from './MissionSlice'
 import { createSlice, nanoid } from '@reduxjs/toolkit'
+import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 
-import { TimeAgo } from './TimeAgo'
+import { TimeAgo } from './TimeAgo';
+const GreenCheckbox = withStyles({
+  root: {
+    color: green[400],
+    '&$checked': {
+      color: green[600],
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
 let COUNT =0;
 export const SinglePostPage = ({ match }) => {
   const { missionId } = match.params
@@ -153,6 +166,12 @@ export const SinglePostPage = ({ match }) => {
           <h4 id={i}>{submis}</h4>
           <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
           <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
+          <Checkbox
+        color="primary"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+        checked={submissions.checks[i]}
+        onChange={updateChecked}
+      />
           {i++}
           </article>
         ); 
@@ -167,11 +186,13 @@ export const SinglePostPage = ({ match }) => {
     UpdateDelete(COUNT);
   }
   const updateChecked = async(e)=>{
+    let change = submissions.checks.slice();
     if(e.target.checked === true){
-      e.target.checked = false;
-      console.log(e.target.checked);
+      change[e.target.id] = false;
+      SetSubMissions({checks:change});
     } else{
-      e.target.checked = true;
+      change[e.target.id] = true;
+      SetSubMissions({checks:change});
       console.log(e.target.checked);
     }
     try{
@@ -182,7 +203,6 @@ export const SinglePostPage = ({ match }) => {
       },
         body:JSON.stringify({checked:submissions.checks[e.target.id],id:submissions.ids[e.target.id]})
       });
-      console.log(response.ok);
       if(response.ok){
         const jsonResponse = await response.json();
         console.log(jsonResponse.response);
@@ -200,7 +220,13 @@ export const SinglePostPage = ({ match }) => {
       <h4 id={i}>{submis}</h4>
       <br></br>
       <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-      <input id={i} type="checkbox" checked={submissions.checks[i]} onClick={updateChecked}/>
+      <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
+      <Checkbox
+        color="primary"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+        checked={submissions.checks[i]}
+        onChange={updateChecked}
+        />
       {i++}
       </article>
     ); 
