@@ -12,7 +12,7 @@ export const SinglePostPage = ({ match }) => {
   const { missionId } = match.params
   
   const [submission,SetSubMission] = useState('');
-  const [submissions,SetSubMissions] = useState({submissionsarray:[],ids:[]});
+  const [submissions,SetSubMissions] = useState({submissionsarray:[],ids:[],checks:[]});
   const[mission1,SetMIssion] = useState({missionget:null});
   const dispatch = useDispatch();
   const [deletestatus, UpdateDelete] = useState(0);
@@ -60,7 +60,7 @@ export const SinglePostPage = ({ match }) => {
       if(response.ok){
         const jsonResponse = await response.json();
         console.log(jsonResponse.response);
-        SetSubMissions({submissionsarray:jsonResponse.response,ids:jsonResponse.id});
+        SetSubMissions({submissionsarray:jsonResponse.response,ids:jsonResponse.id,checks:jsonResponse.checks});
       }else{
       throw new Error('request failed');
     }
@@ -152,6 +152,7 @@ export const SinglePostPage = ({ match }) => {
           <article className="sublist">
           <h4 id={i}>{submis}</h4>
           <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
+          <input type="checkbox" checked={submissions.checks[i]} />
           {i++}
           </article>
         ); 
@@ -165,12 +166,34 @@ export const SinglePostPage = ({ match }) => {
     COUNT++
     UpdateDelete(COUNT);
   }
+  const updateChecked = async(event,i)=>{
+    console.log(submissions.submissionsarray);
+    try{
+      const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json'
+      },
+        body:JSON.stringify({checked:event.target.checked,id:submissions.ids[i]})
+      });
+      console.log(response.ok);
+      if(response.ok){
+        const jsonResponse = await response.json();
+        console.log(jsonResponse.response);
+      }else{
+      throw new Error('request failed');
+    }
+    }catch(error){
+      console.log(error);
+    }
+  }
    renderSubMissions = submissions.submissionsarray.map((submis,i=0) =>{
     return(
       <article className="sublist">
       <h4 id={i}>{submis}</h4>
       <br></br>
       <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
+      <input type="checkbox" checked={submissions.checks[i]+""} onClick={updateChecked(i)}/>
       {i++}
       </article>
     ); 

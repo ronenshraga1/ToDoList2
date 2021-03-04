@@ -206,15 +206,26 @@ app.post('/getsubmissions',(req,res)=>{
         } else{
             let ar =[];
             let ids = [];
+            let ischecked =[];
             let i=0;
             while(i<results.rows.length){
                 ar.push(results.rows[i].item);
                 ids.push(results.rows[i].submission_id);
+                ischecked.push(results.rows[i].checked)
                 i++;
             }
-            res.send({response:ar,id:ids});
+            res.send({response:ar,id:ids,checks:ischecked});
         }
       });
+});
+app.post('/updatesubmission',(req,res)=>{
+  client.query('UPDATE submissions SET checked=$1 WHERE submission_id=$2',[req.body.checked,req.body.id],(error,results)=>{
+    if(error){
+      res.send({response:'failed to update'})
+    } else{
+      res.send({response:'success'})
+    } 
+  });
 });
 app.post('/deletesubmission',(req,res)=>{
     client.query('DELETE FROM submissions WHERE submission_id=$1',[req.body.id],(error,results)=>{
