@@ -152,7 +152,7 @@ export const SinglePostPage = ({ match }) => {
           <article className="sublist">
           <h4 id={i}>{submis}</h4>
           <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-          <input type="checkbox" checked={submissions.checks[i]} />
+          <input type="checkbox" checked={submissions.checks[i]+""} onClick={updateChecked(i)}/>
           {i++}
           </article>
         ); 
@@ -167,7 +167,7 @@ export const SinglePostPage = ({ match }) => {
     UpdateDelete(COUNT);
   }
   const updateChecked = async(event,i)=>{
-    console.log(submissions.submissionsarray);
+    console.log(event.target.checked);
     try{
       const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
         method:'POST',
