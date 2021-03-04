@@ -188,6 +188,7 @@ export const SinglePostPage = ({ match }) => {
     }
   }
    renderSubMissions = submissions.submissionsarray.map((submis,i=0) =>{
+     console.log(submissions.checks[i]+"");
     return(
       <article className="sublist">
       <h4 id={i}>{submis}</h4>
