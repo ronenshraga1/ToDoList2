@@ -188,7 +188,19 @@ button.reaction-button {
 .addsub{
   display: inline-flex;
 }
+.logout{
+  display: flex;
+}
+.btn{
+  display: inline-block;
+  background: #1976d2;
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin-top: 1rem;
 
+}
 
 /* https://projects.lukehaas.me/css-loaders/ , Loader #3 */
 

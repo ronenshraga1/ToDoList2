@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import { useHistory } from 'react-router-dom'
 import { missionAdded } from './MissionSlice';
+import { Link } from 'react-router-dom';
 function gethour(){
   const date = new Date();
   const hour = date.getHours();
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const AddMissionForm = () => {
   const classes = useStyles();
+  const history = useHistory()
   const [open, setOpen] = React.useState(false);
   const [hello, setHello] = React.useState(false);
   const [title, setTitle] = useState('');
@@ -89,10 +90,20 @@ export const AddMissionForm = () => {
     e.preventDefault();
     }
   }
+  const logout=()=>{
+    localStorage.setItem('username','');
+    localStorage.setItem('password','');
+    localStorage.setItem('authenticated','false');
+    localStorage.setItem('role','');
+    history.push('/login');
+  }
   
   return (
     <section>
+     <div className="logout">
       <h2>Add a new Mission</h2>
+      <button className="btn" onClick={logout}>Logout</button>
+      </div>
       <form>
         <label htmlFor="postTitle">Mission Title:</label>
         <input
