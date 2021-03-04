@@ -219,7 +219,13 @@ app.post('/getsubmissions',(req,res)=>{
       });
 });
 app.post('/updatesubmission',(req,res)=>{
-  client.query('UPDATE submissions SET checked=$1 WHERE submission_id=$2',[req.body.checked,req.body.id],(error,results)=>{
+  let newcheckstatus = false;
+  if(req.body.checked === true){
+    newcheckstatus = false
+  } else{
+    newcheckstatus = true;
+  }
+  client.query('UPDATE submissions SET checked=$1 WHERE submission_id=$2',[newcheckstatus,req.body.id],(error,results)=>{
     if(error){
       res.send({response:'failed to update'})
     } else{
