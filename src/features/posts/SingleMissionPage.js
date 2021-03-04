@@ -152,7 +152,7 @@ export const SinglePostPage = ({ match }) => {
           <article className="sublist">
           <h4 id={i}>{submis}</h4>
           <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-          <input type="checkbox" checked={submissions.checks[i]} onChange={updateChecked(i)}/>
+          <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
           {i++}
           </article>
         ); 
@@ -166,15 +166,15 @@ export const SinglePostPage = ({ match }) => {
     COUNT++
     UpdateDelete(COUNT);
   }
-  const updateChecked = async(i)=>{
-    console.log(submissions.checks[i]+"");
+  const updateChecked = async(e)=>{
+    console.log(submissions.checks[e.target.id]+"");
     try{
       const response = await fetch('https://frozen-ridge-44289.herokuapp.com/updatesubmission',{
         method:'POST',
         headers: {
           'Content-Type': 'application/json'
       },
-        body:JSON.stringify({checked:submissions.checks[i],id:submissions.ids[i]})
+        body:JSON.stringify({checked:submissions.checks[e.target.id],id:submissions.ids[e.target.id]})
       });
       console.log(response.ok);
       if(response.ok){
@@ -194,7 +194,7 @@ export const SinglePostPage = ({ match }) => {
       <h4 id={i}>{submis}</h4>
       <br></br>
       <button className="delsubutton" id={submissions.ids[i]} onClick={deletesub}>Delete</button>
-      <input type="checkbox" checked={submissions.checks[i]} onChange={updateChecked(i)}/>
+      <input id={i} type="checkbox" checked={submissions.checks[i]} onChange={updateChecked}/>
       {i++}
       </article>
     ); 
