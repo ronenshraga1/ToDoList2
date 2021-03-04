@@ -22,7 +22,7 @@ export const Login=()=>{
               headers: {
                 'Content-Type': 'application/json'
             },
-              body:JSON.stringify({username:username,password:password})
+              body:JSON.stringify({username:username,password:CryptoJS.AES.encrypt(password, process.env.REACT_APP_KEY_ENCRYPT).toString()})
             });
             if(response.ok){
               const jsonResponse = await response.json();
