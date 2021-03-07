@@ -27,7 +27,7 @@ export const Register=()=>{
               console.log(jsonResponse.err);
               console.log(jsonResponse.authenticated);
               if(jsonResponse.msg ==='new user created'){
-                console.log(jsonResponse.role);
+                console.log('created');
                 localStorage.setItem('authenticated','true');
                 localStorage.setItem('role','user');
                 localStorage.setItem('username',username);
