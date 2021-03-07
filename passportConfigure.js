@@ -18,9 +18,9 @@ const passport = require('passport')
         const first = result.rows[0];
         const passwordbytes =CryptoJS.AES.decrypt(first.password, 'agsfarfsbfggfsajrsrj1');
         const decryptedpassword = passwordbytes.toString(CryptoJS.enc.Utf8);
-        if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === decryptedpassword && first.role==='admin'){
+        if(CryptoJS.AES.decrypt(first.password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === password && first.role==='admin'){
             done(null,{username:first.username,pass:decryptedpassword,role:'admin'});
-        } else if(CryptoJS.AES.decrypt(password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === decryptedpassword){
+        } else if(CryptoJS.AES.decrypt(first.password, 'agsfarfsbfggfsajrsrj1').toString(CryptoJS.enc.Utf8) === password){
             done(null,{username:first.username,pass:decryptedpassword,role:'user'});
         }else{
             done(null,{fail:'failed'});
