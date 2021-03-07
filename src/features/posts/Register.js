@@ -24,6 +24,7 @@ export const Register=()=>{
             console.log(response.ok);
             if(response.ok){
               const jsonResponse = await response.json();
+              console.log(jsonResponse.err);
               console.log(jsonResponse.authenticated);
               if(jsonResponse.msg ==='new user created'){
                 console.log(jsonResponse.role);

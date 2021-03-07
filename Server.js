@@ -44,11 +44,11 @@ app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
   app.post('/tryregister',(req,res)=>{
-    const encryptedPassword = CryptoJS.AES.encrypt(req.body.password, 'agsfarfsbfggfsajrsrj1');
+    const encryptedPassword = CryptoJS.AES.encrypt(req.body.password, 'agsfarfsbfggfsajrsrj1').toString();
     client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,encryptedPassword],(error,results)=>{
           if(error){
               console.log(error);
-              res.json({msg:'username already exists'})
+              res.json({msg:'username already exists',err:error})
           } else{
               res.json({msg:'new user created'});
           }
