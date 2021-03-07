@@ -28,6 +28,11 @@ export const Register=()=>{
               console.log(jsonResponse.authenticated);
               if(jsonResponse.msg ==='new user created'){
                 console.log(jsonResponse.role);
+                localStorage.setItem('authenticated','true');
+                localStorage.setItem('role','user');
+                localStorage.setItem('username',username);
+                localStorage.setItem('password',password);
+                history.push('/missions');
                 Setfail(false);
                 setSuccess(true);
               } else{
