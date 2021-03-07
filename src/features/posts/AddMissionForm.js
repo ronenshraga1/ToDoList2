@@ -40,14 +40,14 @@ export const AddMissionForm = () => {
   const [hello, setHello] = React.useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [userId, setUserId] = useState('');
+  const [tag, setTag] = useState('');
 
   const dispatch = useDispatch()
   const users = useSelector((state) => state.users);
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
-  const onAuthorChanged = (e) => setUserId(e.target.value);
+  const onTagChanged = (e) => setTag(e.target.value);
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -65,7 +65,7 @@ export const AddMissionForm = () => {
       console.log('hi');
       setTitle('');
       setContent('');
-      setUserId('');
+      setTag('');
     } else {
       setOpen(true);
     }
@@ -77,7 +77,7 @@ export const AddMissionForm = () => {
       console.log('hi');
       setTitle('');
       setContent('');
-      setUserId('');
+      setTag('');
     } else {
       setOpen(true);
     }
@@ -113,6 +113,16 @@ export const AddMissionForm = () => {
           placeholder=""
           value={title}
           onChange={onTitleChanged}
+          onKeyPress={stop}
+        />
+        <label htmlFor="tag">Tag</label>
+        <input
+          type="text"
+          id="tag"
+          name="tag"
+          placeholder=""
+          value={title}
+          onChange={onTagChanged}
           onKeyPress={stop}
         />
         

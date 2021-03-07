@@ -13,7 +13,7 @@ async function sendmission(payload){
       headers: {
         'Content-Type': 'application/json'
     },
-      body:JSON.stringify({id:payload.id,date:payload.date,title:payload.title,content:payload.content,user:payload.username})
+      body:JSON.stringify({id:payload.id,date:payload.date,title:payload.title,content:payload.content,user:payload.username,tag:payload.tag})
     });
     if(response.ok){
       const jsonResponse = await response.json();
@@ -36,7 +36,7 @@ const missionsSlice = createSlice({
         state.push(action.payload);
         console.log(state);
       },
-       prepare(title, content, userId) {
+       prepare(title, content, userId,tag) {
         return {
           payload: {
             id: nanoid(),
@@ -44,7 +44,7 @@ const missionsSlice = createSlice({
             title:title,
             content:content,
             username: userId,
-            submissions:['1','2']
+            tag:tag
           },
         }
       },
