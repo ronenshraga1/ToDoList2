@@ -110,7 +110,7 @@ app.use(passport.session());
   });
 
 app.post('/addmission', (req, res) => {
-    client.query('INSERT INTO missions(id,date,title,content,username,tag) VALUES($1,$2,$3,$4,$5)',[req.body.id,req.body.date,req.body.title,req.body.content,req.body.user,req.body.tag],(error,results)=>{
+    client.query('INSERT INTO missions(id,date,title,content,username,tag) VALUES($1,$2,$3,$4,$5,$6)',[req.body.id,req.body.date,req.body.title,req.body.content,req.body.user,req.body.tag],(error,results)=>{
       if(error){
           console.log(error);
       }
