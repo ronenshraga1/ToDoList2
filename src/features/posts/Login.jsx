@@ -58,7 +58,7 @@ export const Login=()=>{
               headers: {
                 'Content-Type': 'application/json'
             },
-              body:JSON.stringify({username:localStorage.getItem('username'),password:CryptoJS.AES.encrypt(localStorage.getItem('password'), process.env.REACT_APP_KEY_ENCRYPT).toString()})
+              body:JSON.stringify({username:localStorage.getItem('username'),password:password})
             });
             if(response.ok){
               const jsonResponse = await response.json();

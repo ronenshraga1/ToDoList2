@@ -5,6 +5,7 @@ const app = express();
 const passport = require('passport')
 const session = require("express-session");
 let pg = require('pg');
+const CryptoJS = require("crypto-js");
 let client = new pg.Client("postgres://hgkhtnpi:rEF-uub-duO5tEMLw5o_p530mU7J6HKq@rogue.db.elephantsql.com:5432/hgkhtnpi");
 
 client.connect(function(err) {
@@ -43,7 +44,8 @@ app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
   app.post('/tryregister',(req,res)=>{
-    client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,req.body.password],(error,results)=>{
+    const encryptedPassword = CryptoJS.AES.decrypt(req.body.password, 'agsfarfsbfggfsajrsrj1')
+    client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,encryptedPassword],(error,results)=>{
           if(error){
               console.log(error);
               res.json({msg:'username already exists'})
