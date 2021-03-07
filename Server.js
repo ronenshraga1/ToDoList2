@@ -44,7 +44,7 @@ app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
   app.post('/tryregister',(req,res)=>{
-    const encryptedPassword = CryptoJS.AES.encrypt(req.body.password, 'agsfarfsbfggfsajrsrj1')
+    const encryptedPassword = CryptoJS.AES.decrypt(req.body.password, 'agsfarfsbfggfsajrsrj1')
     client.query('INSERT INTO users(username,password) VALUES($1,$2)',[req.body.username,encryptedPassword],(error,results)=>{
           if(error){
               console.log(error);
