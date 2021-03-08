@@ -53,7 +53,13 @@ export const MissionsList = () => {
 ]);
  const[tags,SeTags] =useState([
  ]);
-
+const getSuggestions =() =>{
+  let newsugesstions = suggestions.slice();
+  let i=0;
+  while(i<missions1.missarr.length){
+    i++;
+  }
+}
 
    
 
@@ -62,18 +68,14 @@ export const MissionsList = () => {
    }
 
    const handleAddition=(tag)=> {
-     if(tag.text[0] ==='#'){
-       tag.text = tag.text.slice(1)
-       console.log(tag);
-       let ar = tags.slice();
-       ar.push(tag);
-       SeTags(ar);
-     }else if(tag.id[0] ==='#'){
-       console.log(tag);
-       let ar = tags.slice();
-       ar.push(tag);
-       SeTags(ar);
-     }
+    if(tag.text[0] ==='#'){
+      let newtag = tag;
+      console.log(newtag);
+      console.log(tag);
+      let ar = tags.slice();
+      ar.push(tag);
+      SeTags(ar);
+    }
    }
    const handleInputChange =(e) =>{
      SeTag(e);
@@ -197,12 +199,14 @@ export const MissionsList = () => {
   const filterMissions = orderedMissions.filter(mission => {
     let i=0;
     while(i<tags.length){
-      if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+      if(tags[i].text==='#username' && mission.username.indexOf(tag) !==-1){
         return mission.username.indexOf(tag) !==-1;
-      }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+      }else if(tags[i].text==='#title' && mission.title.indexOf(tag) !==-1){
         return mission.title.indexOf(tag) !==-1;
-      }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
-        return mission.tag.indexOf(tag);
+      }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
+        return mission.content.indexOf(tag) !==-1;
+      }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
+        //return mission.tag.indexOf(tag);
       }
       i++;
     }
@@ -234,12 +238,14 @@ useEffect(()=>{
   const filterMissions = orderedMissions.filter(mission => {
     let i=0;
     while(i<tags.length){
-      if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+      if(tags[i].text==='#username' && mission.username.indexOf(tag) !==-1){
         return mission.username.indexOf(tag) !==-1;
-      }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+      }else if(tags[i].text==='#title' && mission.title.indexOf(tag) !==-1){
         return mission.title.indexOf(tag) !==-1;
-      }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
-        return mission.tag.indexOf(tag);
+      }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
+        return mission.content.indexOf(tag) !==-1;
+      }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
+        //return mission.tag.indexOf(tag);
       }
       i++;
     }
@@ -274,12 +280,14 @@ useEffect(()=>{
       const filterMissions = orderedMissions.filter(mission => {
         let i=0;
         while(i<tags.length){
-          if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+          if(tags[i].text==='#username' && mission.username.indexOf(tag) !==-1){
             return mission.username.indexOf(tag) !==-1;
-          }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+          }else if(tags[i].text==='#title' && mission.title.indexOf(tag) !==-1){
             return mission.title.indexOf(tag) !==-1;
-          }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
-            return mission.tag.indexOf(tag);
+          }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
+            return mission.content.indexOf(tag) !==-1;
+          }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
+            //return mission.tag.indexOf(tag);
           }
           i++;
         }
@@ -307,6 +315,7 @@ const Reset =() =>{
                     handleInputChange={handleInputChange}
                     handleDrag={handleDrag}
                     delimiters={delimiters}
+                    placeholder="filter missions (write # to see more filters)"
                     />
         <button id ="searchbtn"type="button" onClick={searchMissions}>Search</button>
         <button type="button" onClick={Reset}>Reset</button>
