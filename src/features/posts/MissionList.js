@@ -58,6 +58,7 @@ const getSuggestions =() =>{
   console.log(newsugesstions);
   let i=0;
   let newtag =''
+  console.log(missions1.missarr.length);
   while(i<missions1.missarr.length){
     console.log(missions1.missarr[i].tag);
     if(missions1.missarr[i].tag !== '' && missions1.missarr[i].tag !== null){
