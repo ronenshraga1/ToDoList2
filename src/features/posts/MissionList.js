@@ -55,10 +55,18 @@ export const MissionsList = () => {
  ]);
 const getSuggestions =() =>{
   let newsugesstions = suggestions.slice();
+  console.log(newsugesstions);
   let i=0;
+  let newtag =''
   while(i<missions1.missarr.length){
-    i++;
+    if(missions1.missarr[i].tag !== ''){
+      newtag = {id : '#'+missions1.missarr[i].tag, text:'#'+missions1.missarr[i].tag};
+      newsugesstions.push(newtag);
+    }
   }
+  SetSuggestions(newsugesstions);
+  console.log(suggestions);
+
 }
 
    
@@ -142,6 +150,7 @@ const getSuggestions =() =>{
   const missions = useSelector((state) => state.missions)
   useEffect(()=>{
     getmission();
+    getSuggestions();
   },[missions])
 
   useEffect(()=>{
