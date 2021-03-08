@@ -155,6 +155,7 @@ const getSuggestions =() =>{
 
   useEffect(()=>{
     getmission();
+    getSuggestions();
      renderedMissions = missions1.missarr.map((mission) => {
       return (
         <article className="post-excerpt" key={mission.id}>
