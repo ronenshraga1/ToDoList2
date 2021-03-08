@@ -61,7 +61,7 @@ export const AddMissionForm = () => {
   },[])
   const onSaveMissionClicked = (e) => {
     if (title !== '' && content !=='') {
-      dispatch(missionAdded(title, content, localStorage.getItem('username')));
+      dispatch(missionAdded(title, content, localStorage.getItem('username'),tag));
       console.log('hi');
       setTitle('');
       setContent('');
