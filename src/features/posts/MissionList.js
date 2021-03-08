@@ -157,7 +157,7 @@ const getSuggestions =() =>{
   useEffect(()=>{
     console.log('work');
     getSuggestions();
-  },[])
+  },[missions1.missarr])
   useEffect(()=>{
     getmission();
      renderedMissions = missions1.missarr.map((mission) => {
