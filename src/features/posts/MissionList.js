@@ -175,6 +175,7 @@ const getSuggestions =() =>{
           <h3>{mission.title}</h3>
           <div>
             <TimeAgo timestamp={mission.date} />
+            <p>Tag:{mission.tag}</p>
           </div>
           <p className="post-content">{mission.content.substring(0, 100)}</p>
   
@@ -203,6 +204,7 @@ const getSuggestions =() =>{
         <h3>{mission.title}</h3>
         <div>
           <p>User:{mission.username}</p>
+          <p>Tag:{mission.tag}</p>
           <TimeAgo timestamp={mission.date} />
         </div>
         <p className="post-content">{mission.content.substring(0, 100)}</p>
@@ -240,6 +242,7 @@ const getSuggestions =() =>{
         <h3>{mission.title}</h3>
         <div>
           <p>User:{mission.username}</p>
+          <p>Tag:{mission.tag}</p>
           <TimeAgo timestamp={mission.date} />
         </div>
         <p className="post-content">{mission.content.substring(0, 100)}</p>
@@ -280,6 +283,7 @@ useEffect(()=>{
         <h3>{mission.title}</h3>
         <div>
           <p>User:{mission.username}</p>
+          <p>Tag:{mission.tag}</p>
           <TimeAgo timestamp={mission.date} />
         </div>
         <p className="post-content">{mission.content.substring(0, 100)}</p>
