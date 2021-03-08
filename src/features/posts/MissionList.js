@@ -154,6 +154,7 @@ const getSuggestions =() =>{
   const missions = useSelector((state) => state.missions)
   useEffect(()=>{
     getmission();
+    getSuggestions();
   },[missions])
   useEffect(()=>{
     console.log('work');
