@@ -47,9 +47,9 @@ export const MissionsList = () => {
   });
   const[tag,SeTag] = useState('');
   const[suggestions,SetSuggestions] =useState([
-   { id: '#username', text: 'username' },
-   { id: '#title', text: 'title' },
-   { id: '#content', text: 'content'}
+   { id: '#username', text: '#username' },
+   { id: '#title', text: '#title' },
+   { id: '#content', text: '#content'}
 ]);
  const[tags,SeTags] =useState([
  ]);
