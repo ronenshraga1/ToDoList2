@@ -29,6 +29,12 @@ const GreenCheckbox = withStyles({
 function CheckboxLabels() {
   
 }
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+};
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 let renderedMissions =[];
 export const MissionsList = () => {
@@ -39,6 +45,49 @@ export const MissionsList = () => {
   const [state, setState] = React.useState({
     checkedG: false,
   });
+  const[tag,SeTag] = useState('');
+  const[suggestions,SetSuggestions] =useState([
+   { id: '#username', text: 'username' },
+   { id: '#title', text: 'title' },
+   { id: '#content', text: 'content'}
+]);
+ const[tags,SeTags] =useState([
+ ]);
+
+
+   
+
+   const handleDelete=(i)=> {
+       SeTags(tags.filter((tag, index) => index !== i));
+   }
+
+   const handleAddition=(tag)=> {
+     if(tag.text[0] ==='#'){
+       tag.text = tag.text.slice(1)
+       console.log(tag);
+       let ar = tags.slice();
+       ar.push(tag);
+       SeTags(ar);
+     }else if(tag.id[0] ==='#'){
+       console.log(tag);
+       let ar = tags.slice();
+       ar.push(tag);
+       SeTags(ar);
+     }
+   }
+   const handleInputChange =(e) =>{
+     SeTag(e);
+   }
+
+   const handleDrag=(tag, currPos, newPos)=> {
+       const newTags = tags.slice();
+       newTags.splice(currPos, 1);
+       newTags.splice(newPos, 0, tag);
+
+       // re-render
+       SeTags(newTags);
+   }
+
   const[search,SetSearch] = useState('');
   const getmission = async() =>{
     console.log(localStorage.getItem('role'));
@@ -215,15 +264,14 @@ const Reset =() =>{
     <section className="posts-list">
       <h2>Missions</h2>
       <div className="search">
-      <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder="filter missions by title and content"
-          value={search}
-          onChange={onUpdateSearch}
-          onKeyPress={searchMissions}
-        />
+      <ReactTags tags={tags}
+                    suggestions={suggestions}
+                    handleDelete={handleDelete}
+                    handleAddition={handleAddition}
+                    handleInputChange={handleInputChange}
+                    handleDrag={handleDrag}
+                    delimiters={delimiters}
+                    />
         <button id ="searchbtn"type="button" onClick={searchMissions}>Search</button>
         <button type="button" onClick={Reset}>Reset</button>
         </div>

@@ -121,7 +121,7 @@ export const AddMissionForm = () => {
           id="tag"
           name="tag"
           placeholder=""
-          value={title}
+          value={tag}
           onChange={onTagChanged}
           onKeyPress={stop}
         />
