@@ -194,7 +194,19 @@ export const MissionsList = () => {
     );
   })
 } else{
-  const filterMissions = orderedMissions.filter(mission => mission.title.indexOf(search) !==-1 || mission.content.indexOf(search) !==-1 || mission.username.indexOf(search) !==-1);
+  const filterMissions = orderedMissions.filter(mission => {
+    let i=0;
+    while(i<tags.length){
+      if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+        return mission.username.indexOf(tag) !==-1;
+      }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+        return mission.title.indexOf(tag) !==-1;
+      }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
+        return mission.tag.indexOf(tag);
+      }
+      i++;
+    }
+    });
   renderedMissions = filterMissions.map((mission) =>{
     return (
       <article className="post-excerpt" key={mission.id}>
@@ -219,7 +231,20 @@ export const MissionsList = () => {
 }
 }
 useEffect(()=>{
-  const filterMissions = orderedMissions.filter(mission => mission.title.indexOf(search) !==-1 || mission.content.indexOf(search) !==-1 || mission.username.indexOf(search) !==-1);
+  const filterMissions = orderedMissions.filter(mission => {
+    let i=0;
+    while(i<tags.length){
+      if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+        return mission.username.indexOf(tag) !==-1;
+      }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+        return mission.title.indexOf(tag) !==-1;
+      }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
+        return mission.tag.indexOf(tag);
+      }
+      i++;
+    }
+    }
+    );
   renderedMissions = filterMissions.map((mission) =>{
     return (
       <article className="post-excerpt" key={mission.id}>
@@ -245,14 +270,25 @@ useEffect(()=>{
 },[update]);
   const onUpdateSearch = (e) => SetSearch(e.target.value);
   const searchMissions =(e) =>{
-    if(e.which === 13 || e.target.id==='searchbtn'){
       console.log('press');
-      const filterMissions = orderedMissions.filter(mission => mission.title.indexOf(search) !==-1 || mission.content.indexOf(search) !==-1|| mission.username.indexOf(search) !==-1);
+      const filterMissions = orderedMissions.filter(mission => {
+        let i=0;
+        while(i<tags.length){
+          if(tags[i].text==='username' && mission.username.indexOf(tag) !==-1){
+            return mission.username.indexOf(tag) !==-1;
+          }else if(tags[i].text==='title' && mission.title.indexOf(tag) !==-1){
+            return mission.title.indexOf(tag) !==-1;
+          }else if(tags[i].text!=='username' && tags[i].text!=='title' && tags[i].text!=='content'){
+            return mission.tag.indexOf(tag);
+          }
+          i++;
+        }
+        });
       console.log(filterMissions);
       FILTER++;
       FILTERON = true;
       SetUpdate(FILTER);
-  }
+  
 }
 const Reset =() =>{
   FILTERON = false;
