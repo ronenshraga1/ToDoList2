@@ -16,6 +16,7 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import { TimeAgo } from './TimeAgo'
 import { deleteMission,missionAdded } from './MissionSlice'
 let  CHANGE =0;
+let SUG =0;
 let FILTER =0;
 let FILTERON = false;
 const GreenCheckbox = withStyles({
@@ -156,7 +157,10 @@ const getSuggestions =() =>{
   },[missions])
   useEffect(()=>{
     console.log('work');
+    if(SUG === 0){
     getSuggestions();
+    SUG++;
+    }
   },[missions1.missarr])
   useEffect(()=>{
     getmission();
