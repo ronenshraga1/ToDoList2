@@ -154,7 +154,10 @@ const getSuggestions =() =>{
   useEffect(()=>{
     getmission();
   },[missions])
-
+  useEffect(()=>{
+    console.log('work');
+    getSuggestions();
+  },[])
   useEffect(()=>{
     getmission();
      renderedMissions = missions1.missarr.map((mission) => {
@@ -185,7 +188,6 @@ const getSuggestions =() =>{
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date))
   if(FILTERON === false){
-    getSuggestions();
    renderedMissions = orderedMissions.map((mission) => {
     return (
       <article className="post-excerpt" key={mission.id}>
