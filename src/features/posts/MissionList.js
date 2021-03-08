@@ -59,8 +59,8 @@ const getSuggestions =() =>{
   let i=0;
   let newtag =''
   while(i<missions1.missarr.length){
+    console.log(missions1.missarr[i].tag);
     if(missions1.missarr[i].tag !== '' && missions1.missarr[i].tag !== null){
-      console.log(missions1.missarr[i].tag);
       newtag = {id : '#'+missions1.missarr[i].tag, text:'#'+missions1.missarr[i].tag};
       newsugesstions.push(newtag);
     }
@@ -115,6 +115,7 @@ const getSuggestions =() =>{
         const jsonResponse = await response.json();
         console.log(jsonResponse.js);
         Setmiss({missarr:jsonResponse.js});
+        getSuggestions();
       }else{
       throw new Error('request failed');
     }
@@ -152,7 +153,6 @@ const getSuggestions =() =>{
   const missions = useSelector((state) => state.missions)
   useEffect(()=>{
     getmission();
-    getSuggestions();
   },[missions])
 
   useEffect(()=>{
