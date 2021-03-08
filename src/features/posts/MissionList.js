@@ -116,7 +116,6 @@ const getSuggestions =() =>{
         const jsonResponse = await response.json();
         console.log(jsonResponse.js);
         Setmiss({missarr:jsonResponse.js});
-        getSuggestions();
       }else{
       throw new Error('request failed');
     }
@@ -186,6 +185,7 @@ const getSuggestions =() =>{
     .slice()
     .sort((a, b) => b.date.localeCompare(a.date))
   if(FILTERON === false){
+    getSuggestions();
    renderedMissions = orderedMissions.map((mission) => {
     return (
       <article className="post-excerpt" key={mission.id}>
