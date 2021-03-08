@@ -157,7 +157,7 @@ const getSuggestions =() =>{
   },[missions])
   useEffect(()=>{
     console.log('work');
-    if(SUG === 0){
+    if(SUG < 2){
     getSuggestions();
     SUG++;
     }
