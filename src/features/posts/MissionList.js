@@ -224,7 +224,7 @@ const getSuggestions =() =>{
       }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
         return mission.content.indexOf(tag) !==-1;
       }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
-        //return mission.tag.indexOf(tag);
+        return mission.tag === tags[i].text.slice(1);
       }
       i++;
     }
@@ -263,7 +263,7 @@ useEffect(()=>{
       }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
         return mission.content.indexOf(tag) !==-1;
       }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
-        //return mission.tag.indexOf(tag);
+        return mission.tag === tags[i].text.slice(1);
       }
       i++;
     }
@@ -305,7 +305,7 @@ useEffect(()=>{
           }else if(tags[i].text==='#content' && mission.content.indexOf(tag) !==-1){
             return mission.content.indexOf(tag) !==-1;
           }else if(tags[i].text!=='#username' && tags[i].text!=='#title' && tags[i].text!=='#content'){
-            //return mission.tag.indexOf(tag);
+            return mission.tag === tags[i].text.slice(1);
           }
           i++;
         }
