@@ -63,6 +63,7 @@ const getSuggestions =() =>{
       newtag = {id : '#'+missions1.missarr[i].tag, text:'#'+missions1.missarr[i].tag};
       newsugesstions.push(newtag);
     }
+    i++;
   }
   SetSuggestions(newsugesstions);
   console.log(suggestions);
@@ -155,7 +156,6 @@ const getSuggestions =() =>{
 
   useEffect(()=>{
     getmission();
-    getSuggestions();
      renderedMissions = missions1.missarr.map((mission) => {
       return (
         <article className="post-excerpt" key={mission.id}>
