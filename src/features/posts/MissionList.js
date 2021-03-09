@@ -331,6 +331,14 @@ const Reset =() =>{
   SetUpdateDelete(FILTER);
   SetSearch('');
 }
+const filtersugesstions =(textInputValue, possibleSuggestionsArray) =>{
+  let lowerCaseQuery = textInputValue.toLowerCase()
+
+  return possibleSuggestionsArray.filter(function(suggestion)  {
+      return suggestion.text.includes(lowerCaseQuery);
+  })
+}
+
   return (
     <section className="posts-list">
       <h2>Missions</h2>
@@ -342,6 +350,8 @@ const Reset =() =>{
                     handleInputChange={handleInputChange}
                     handleDrag={handleDrag}
                     delimiters={delimiters}
+                    handleFilterSuggestions={filtersugesstions}
+                    minQueryLength={1}
                     placeholder="filter missions (write # to see more filters)"
                     />
         <button id ="searchbtn"type="button" onClick={searchMissions}>Search</button>
